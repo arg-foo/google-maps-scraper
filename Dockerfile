@@ -24,13 +24,12 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -ldflags="-w -s" -o /usr/bin/google-maps-scraper
 
-# Final stage — use Ubuntu 24.04 (officially supported by Playwright) to avoid
-# "your OS is not officially supported" runtime warnings on all platforms
-FROM ubuntu:24.04
+# Final stage
+FROM debian:trixie-slim
 ENV PLAYWRIGHT_BROWSERS_PATH=/opt/browsers
 ENV PLAYWRIGHT_DRIVER_PATH=/opt
 
-# Install only the necessary Chromium dependencies in a single layer
+# Install only the necessary dependencies in a single layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     libnss3 \
@@ -51,7 +50,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgbm1 \
     libpango-1.0-0 \
     libcairo2 \
-    libasound2t64 \
+    libasound2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
