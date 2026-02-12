@@ -200,8 +200,12 @@ try {
         [System.IO.File]::WriteAllText($tmpFile, "", [System.Text.UTF8Encoding]::new($false))
 
         # Build Docker args
+        # --init: proper PID 1 signal forwarding and zombie reaping for Chromium child processes
+        # --shm-size: Chromium needs more than Docker's default 64MB /dev/shm
         $dockerArgs = @(
             "run", "--rm",
+            "--init",
+            "--shm-size=1g",
             "-v", "${QueryFile}:/input.txt",
             "-v", "${tmpFile}:/results.csv",
             $DockerImage,
