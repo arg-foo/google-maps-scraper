@@ -135,14 +135,8 @@ The scraper has [built-in LeadsDB integration](#export-to-leadsdb) - just add yo
 
 Start the web interface with a single command:
 
-**Linux / macOS (bash):**
 ```bash
 mkdir -p gmapsdata && docker run -v $PWD/gmapsdata:/gmapsdata -p 8080:8080 gosom/google-maps-scraper -data-folder /gmapsdata
-```
-
-**Windows (PowerShell):**
-```powershell
-New-Item -ItemType Directory -Force -Path gmapsdata | Out-Null; docker run -v "${PWD}/gmapsdata:/gmapsdata" -p 8080:8080 gosom/google-maps-scraper -data-folder /gmapsdata
 ```
 
 Then open http://localhost:8080 in your browser.
@@ -150,14 +144,11 @@ Then open http://localhost:8080 in your browser.
 Or download the [binary release](https://github.com/gosom/google-maps-scraper/releases) for your platform.
 
 > **Note:** Results take at least 3 minutes to appear (minimum configured runtime).
->
+> 
 > **macOS Users:** Docker command may not work. See [MacOS Instructions](MacOS%20instructions.md).
->
-> **Windows Users:** Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) with WSL 2 backend enabled. Ensure Docker Desktop is running before executing commands. See [Windows Setup Guide](singapore/README_WINDOWS.md) for detailed setup instructions.
 
 ### Command Line
 
-**Linux / macOS (bash):**
 ```bash
 touch results.csv && docker run \
   -v $PWD/example-queries.txt:/example-queries \
@@ -166,19 +157,6 @@ touch results.csv && docker run \
   -depth 1 \
   -input /example-queries \
   -results /results.csv \
-  -exit-on-inactivity 3m
-```
-
-**Windows (PowerShell):**
-```powershell
-New-Item -ItemType File -Force -Path results.csv | Out-Null
-docker run `
-  -v "${PWD}/example-queries.txt:/example-queries" `
-  -v "${PWD}/results.csv:/results.csv" `
-  gosom/google-maps-scraper `
-  -depth 1 `
-  -input /example-queries `
-  -results /results.csv `
   -exit-on-inactivity 3m
 ```
 
