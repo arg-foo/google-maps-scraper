@@ -1,0 +1,35 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Build artifacts
+bin/
+vendor/
+cache/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation (not needed in image)
+*.md
+LICENSE
+
+# Development files
+docker-compose*.yaml
+Makefile
+coverage.*
+
+# Data and output files
+gmapsdata/
+webdata/
+singapore/
+*.csv
+*.log
+
+# AI/agent config
+.claude/
+AGENTS.md

@@ -1,0 +1,24 @@
+# Force LF line endings for files that must not contain CRLF.
+# This prevents Docker build failures on Windows where Git may
+# check out files with \r\n line endings that break shell commands
+# inside Linux containers.
+
+# Dockerfiles
+Dockerfile        text eol=lf
+Dockerfile.*      text eol=lf
+docker-compose*   text eol=lf
+.dockerignore     text eol=lf
+
+# Shell scripts
+*.sh              text eol=lf
+
+# Go source (built inside Linux containers)
+*.go              text eol=lf
+go.mod            text eol=lf
+go.sum            text eol=lf
+
+# SQL migrations (executed inside Linux containers)
+*.sql             text eol=lf
+
+# Makefile (uses sh internally)
+Makefile          text eol=lf
