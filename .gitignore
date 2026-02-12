@@ -2,3 +2,8 @@ cache/
 vendor
 bin
 webdata/
+singapore/singapore_restaurants_raw.csv
+*__pycache__
+.claude/
+gmapsdata
+singapore/*.log
